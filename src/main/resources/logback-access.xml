@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+    <appender name="ACCESS" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>/var/log/borneo/access.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/var/log/borneo/access.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>[%date] %D{}000 "%r" %s %b "bytes" "%i{User-Agent}" </pattern>
+            <!-- this quadruples logging throughput -->
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+    </appender>
+
+    <appender-ref ref="ACCESS" />
+</configuration>

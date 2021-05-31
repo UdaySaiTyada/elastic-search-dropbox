@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%date{YYYY-MM-dd HH:mm:ss} [%X{requestId}] %level [%thread] %logger{10} [%file:%line] %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="rollingFileAppender"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <file>/var/log/borneo/borneo.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>/var/log/borneo/borneo.%d{yyyy-MM-dd}.log.gz</fileNamePattern>
+            <maxHistory>48</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%date{YYYY-MM-dd HH:mm:ss} [%X{requestId}] %level [%thread] %logger{10} [%file:%line] %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="debug" />
+
+    <springProfile name="local">
+        <root level="info">
+            <appender-ref ref="rollingFileAppender" />
+            <appender-ref ref="consoleAppender" />
+        </root>
+    </springProfile>
+    <springProfile name="dev">
+        <root level="info">
+            <appender-ref ref="rollingFileAppender" />
+            <appender-ref ref="consoleAppender" />
+        </root>
+    </springProfile>
+    <springProfile name="test">
+        <root level="info">
+            <appender-ref ref="rollingFileAppender" />
+        </root>
+    </springProfile>
+    <springProfile name="preprod">
+        <root level="info">
+            <appender-ref ref="rollingFileAppender" />
+        </root>
+    </springProfile>
+    <springProfile name="prod">
+        <root level="info">
+            <appender-ref ref="rollingFileAppender" />
+        </root>
+    </springProfile>
+</configuration>

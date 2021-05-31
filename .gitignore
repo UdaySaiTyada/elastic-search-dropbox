@@ -1,0 +1,31 @@
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.idea/
+.classpath
+.project
+
+# Gradle file mistakes
+.gradle
+build
+
+# Target folder
+*/target/**
+out
+target
+
+#Local Properties
+
+application-local.properties
+.classpath
+.project
+.settings/
+target/
+.idea/

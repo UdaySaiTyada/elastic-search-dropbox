@@ -1,0 +1,1 @@
+# elastic search functionality for drop box
